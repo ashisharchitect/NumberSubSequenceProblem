@@ -15,7 +15,7 @@ namespace NumberProblem
                 var numberArray = ConvertStringToArray(strInputValue);
                 var subSequenceList = GetSubSequenceList(numberArray);
                 var returnValue = GetMaxSet(subSequenceList);
-                return returnValue;
+                return returnValue.Trim();
             }
 
             catch(Exception ex)
@@ -45,6 +45,10 @@ namespace NumberProblem
                 {
                     if (numberArray[l] < numberArray[j])
                     {
+                        if(numberArray[l]== 3808)
+                        {
+                            var test = numberArray[l] + " " + numberArray[j];
+                        }
                         sbValueSet.Append(Common.SingleSpace + numberArray[j]);
                         l = j;
                     }
@@ -60,10 +64,23 @@ namespace NumberProblem
 
         public static string GetMaxSet(IList<string> list)
         {
-            var result = list.OrderByDescending(s => s.Length).FirstOrDefault();
+            StringBuilder sbResult = new StringBuilder();
+            var setLength = list.OrderByDescending(s => s.Length).FirstOrDefault().Split().Length;
 
-            return result;
-        }        
+            foreach (var item in list)
+            {
+                string[] strArray = item.Trim().Split(Common.SingleSpace);
+
+                if (strArray.Length== setLength)
+                {
+                    foreach (var val in strArray)
+                    sbResult.Append(val + Common.SingleSpace);
+                    break;
+                }
+            }
+
+            return sbResult.ToString().Trim();
+        }
         
         class MainList
         {

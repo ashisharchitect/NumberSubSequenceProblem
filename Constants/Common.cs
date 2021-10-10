@@ -7,6 +7,5 @@ namespace Constants
         public const string SingleSpace = " ";
         public const string ExceptionMessage = "Some error occured: ";        
 
-        //test
     }
 }
